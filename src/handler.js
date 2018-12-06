@@ -75,7 +75,7 @@ export default class Handler {
 		};
 
 		const fullUrl = url + '?' + qs.stringify( args );
-		return fetch( fullUrl, { ...options, ...this.fetchOptions } )
+		return fetch( fullUrl, { ...options, ...this.fetchOptions, } )
 			.then( parseResponse );
 	}
 
