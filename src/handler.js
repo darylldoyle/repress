@@ -358,6 +358,7 @@ export default class Handler {
 
             options = {
                 method:  'POST',
+				headers: { 'Content-Type': 'multipart/form-data' },
                 body:    formData,
             };
 		}
