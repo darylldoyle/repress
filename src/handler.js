@@ -336,7 +336,7 @@ export default class Handler {
 	 * @return {Function} Action to dispatch.
 	 */
 	// eslint-disable-next-line no-undef
-	createSingle = (data, fileUpload = false) => dispatch => {
+	createSingle = data => dispatch => {
 		// Create temporary ID to allow tracking request.
 		const id = '_tmp_' + this.tempId++;
 
@@ -347,21 +347,6 @@ export default class Handler {
 			headers: { 'Content-Type': 'application/json' },
 			body:    JSON.stringify( data ),
 		};
-
-		if(fileUpload) {
-            var formData = new FormData();
-
-            const params = Object.entries(data)
-            for (const [key, value] of params) {
-                formData.append( key, value );
-            }
-
-            options = {
-                method:  'POST',
-				headers: { 'Content-Type': 'multipart/form-data' },
-                body:    formData,
-            };
-		}
 
 		return this.fetch( this.url, { context: 'edit' }, options )
 			.then( data => {
